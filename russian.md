@@ -281,9 +281,15 @@ Article::has('user.profile')->verified()->latest()->get();
 
 [🔝 Наверх](#Содержание)
 
-### **Используйте массовое заполнение (mass assignment)**
+### **Не используйте массовое заполнение (mass assignment)**
 
 Плохо:
+
+```php
+$category->article()->create($request->validated());
+```
+
+Хорошо:
 
 ```php
 $article = new Article;
@@ -293,12 +299,6 @@ $article->verified = $request->verified;
 // Привязать статью к категории.
 $article->category_id = $category->id;
 $article->save();
-```
-
-Хорошо:
-
-```php
-$category->article()->create($request->validated());
 ```
 
 [🔝 Наверх](#Содержание)
